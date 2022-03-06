@@ -31,6 +31,7 @@ def get_stocks_data():
 
 
 #stocks = ['TSLA','NVDA','AAPL']
+@st.cache(suppress_st_warning=True)
 def save_sp500_tickers():
     resp = r.get('http://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
     soup = bs(resp.text, 'lxml')
@@ -44,6 +45,7 @@ def save_sp500_tickers():
     tickers = list(map(lambda s: s.strip(), tickers))
 
     return tickers
+
 
 def get_results(df):
 
@@ -161,6 +163,12 @@ reccs = ','.join(reccs_l)
 
 st.subheader('Top 10 reccs with score of 8')
 st.text(reccs)
+
+enter_stocks = st.text_input('Search current rank of stocks', 'NFLX,TSLA')
+st.write('Stocks selected are: ', enter_stocks)
+stocks_list = enter_stocks.split(",")
+st.dataframe(df.loc[df['Symbol'].isin(stocks_list)][['Symbol','Total_Score']])
+
 
 def get_html(ticker):
 	code = """
