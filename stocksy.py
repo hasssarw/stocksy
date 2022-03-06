@@ -2,8 +2,8 @@ import yfinance as yf
 import pandas as pd
 import datetime
 import requests as r
-from bs4 import BeautifulSoup as bs
-import pickle
+#from bs4 import BeautifulSoup as bs
+#import pickle
 import numpy as np
 from scipy import stats
 import streamlit as st
@@ -39,8 +39,8 @@ def save_sp500_tickers():
     for row in table.findAll('tr')[1:]:
         ticker = row.findAll('td')[0].text
         tickers.append(ticker)
-    with open("sp500tickers.pickle","wb") as f:
-        pickle.dump(tickers,f)
+    # with open("sp500tickers.pickle","wb") as f:
+    #     pickle.dump(tickers,f)
     tickers = list(map(lambda s: s.strip(), tickers))
 
     return tickers
