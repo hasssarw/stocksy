@@ -158,10 +158,10 @@ df = get_results(df)
 df = df[['Symbol','Date','slope13_normal','Total_Score']].sort_values(by = ['Total_Score','slope13_normal'], ascending=[False,False])
 st.dataframe(df)
 
-reccs_l = [x for x in df.loc[df['Total_Score']==8].sort_values(by ='slope13_normal', ascending=False).head(10)['Symbol']]
+reccs_l = [x for x in df.sort_values(by = ['Total_Score','slope13_normal'], ascending=[False,False]).head(10)['Symbol']]
 reccs = ','.join(reccs_l)
 
-st.subheader('Top 10 reccs with score of 8')
+st.subheader('Top 10 reccs ranked by score and slope')
 st.text(reccs)
 
 enter_stocks = st.text_input('Search current rank of stocks', 'NFLX,TSLA')
