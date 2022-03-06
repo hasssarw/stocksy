@@ -1,0 +1,9 @@
+yfinance
+pandas
+datetime
+requests
+BeautifulSoup
+pickle
+numpy
+scipy
+streamlit
