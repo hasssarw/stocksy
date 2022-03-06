@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 import datetime
 import requests as r
-from beautifulsoup4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup as bs
 #import pickle
 import numpy as np
 from scipy import stats
