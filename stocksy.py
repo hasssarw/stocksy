@@ -23,7 +23,7 @@ startDate = endDate - d
 startDate = startDate#.date()
 print("Getting {} days worth of data from {} to {}".format(days, startDate, endDate))
 
-@st.cache(suppress_st_warning=True)
+@st.cache_data()
 def get_stocks_data():
 	df = yf.download(stocks, start=startDate, end=endDate,group_by="ticker")
 	return df
@@ -31,7 +31,7 @@ def get_stocks_data():
 
 
 #stocks = ['TSLA','NVDA','AAPL']
-@st.cache(suppress_st_warning=True)
+@st.cache_data()
 def save_sp500_tickers():
     resp = r.get('http://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
     soup = bs(resp.text, 'lxml')
@@ -153,7 +153,8 @@ st.title('STOCKSY APP | DAILY STOCK PICKS')
 stocks = save_sp500_tickers()
 with st.spinner('Wait for it...'):
 	df = get_stocks_data()
-df = df.unstack().reset_index().pivot_table(index=['level_0','Date'], columns = ['level_1'], values=0).reset_index().rename(columns={"level_0": "Symbol","Volume": "Vol"})
+
+df= df.unstack().reset_index().pivot_table(index=['Ticker','Date'],columns=['Price'],values=0).reset_index().rename(columns={"Ticker": "Symbol",'Volume': "Vol"})
 df = get_results(df)
 df = df[['Symbol','Date','slope13_normal','Total_Score']].sort_values(by = ['Total_Score','slope13_normal'], ascending=[False,False])
 st.dataframe(df)
