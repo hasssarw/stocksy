@@ -23,7 +23,7 @@ startDate = endDate - d
 startDate = startDate#.date()
 print("Getting {} days worth of data from {} to {}".format(days, startDate, endDate))
 
-@st.cache_data()
+#@st.cache_data()
 def get_stocks_data():
 	df = yf.download(stocks, start=startDate, end=endDate,group_by="ticker")
 	return df
