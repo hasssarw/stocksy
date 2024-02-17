@@ -11,7 +11,7 @@ import streamlit.components.v1 as components
 
 
 st.set_page_config(
-     page_title="Ex-stream-ly Cool App",
+     page_title="Stocksy App",
      page_icon="🧊",
      layout="wide"
      )
