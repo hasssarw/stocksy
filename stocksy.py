@@ -151,8 +151,8 @@ st.title('STOCKSY APP | DAILY STOCK PICKS')
 
 
 stocks = save_sp500_tickers()
-with st.spinner('Wait for it...'):
-	df = get_stocks_data()
+#with st.spinner('Wait for it...'):
+df = get_stocks_data()
 
 df= df.unstack().reset_index().pivot_table(index=['Ticker','Date'],columns=['Price'],values=0).reset_index().rename(columns={"Ticker": "Symbol",'Volume': "Vol"})
 df = get_results(df)
